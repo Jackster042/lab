@@ -16,7 +16,12 @@ This repository serves as my **Systems Research & Development (R&D) center**. It
 *   **Cloud Infrastructure Evaluation:** Benchmarking **AWS (S3/CloudFront/RDS)** vs. **Cloudflare (R2/Workers/D1)**.
     *   *Constraint:* High-density property imagery must be delivered via the edge with minimal cold-start latency.
     *   *Constraint:* Evaluating cost-scaling predictability for solo-founder and small-team environments.
-*   **Database & Security Strategy:** Researching spatial indexing in PostgreSQL to optimize bounding-box queries for map-view filtering. Exploring **Better Auth** as a modular alternative to proprietary SaaS auth providers to ensure total data ownership.
+   *   **The Compute Layer Pivot:** Migrating from Next.js/Prisma to **TanStack Start/Drizzle**. 
+    *   *Rationale:* By "opening the hood," I am replacing "magic" SQL generation with lean, explicit queries. This transition allows for a deeper understanding of the request lifecycle—from the browser to the Edge PoP (Cloudflare) and finally to the Regional Data Center (AWS).
+*   **Infrastructure Strategy:** Evaluating a "Vending Machine vs. Warehouse" architecture.
+    *   *Cloudflare (The Vending Machine):* Utilizing Edge Workers and R2 for low-latency delivery of high-density property imagery and initial request filtering.
+    *   *AWS (The Warehouse):* Utilizing Regional RDS and S3 for "High-Trust" transactions where data integrity and ACID compliance are non-negotiable (e.g., rental/purchase executions).
+*   **Database & Security Strategy:** Utilizing **Drizzle ORM** to maintain a lean compute footprint, reducing "Cold Start" latency on Lambda environments while ensuring type-safe SQL execution.
 
 #### 2. Canvas Cameo — **Architectural Post-Mortem**
 **Status:** Archived / Systems Study  
@@ -50,18 +55,34 @@ With the rise of AI-assisted exploit generation, I am researching defensive stra
 - **Spatial Indexing & GiST:** Deep-dive into PostgreSQL indexing for geographic data—specifically for Mapbox viewport-filtering optimization in the Heritage-Refactor.
 - **Memory-Safety & Go:** Exploring the offloading of performance-critical middleware to **Go** to leverage its superior concurrency model and memory safety for security-critical tasks.
 
+#### **Systems Architecture Research**
+- **Edge vs. Region:** Mastering the trade-offs between **Isolates (Workers)** and **Serverless Functions (Lambdas)** to optimize for both global speed and regional data integrity.
+- **The Saga Pattern:** Investigating distributed transaction management to maintain consistency in event-driven systems.
+- **Memory-Safety & Go:** Exploring the offloading of performance-critical middleware to **Go (Golang)** to leverage its superior concurrency model for security-critical request validation.
+
 ---
 
 ### 🛠️ Current Research Domain
-*   **Languages & Frameworks:** TanStack Start, Go (Golang), React 19 (Server Components).
-*   **Cloud Ecosystems:** AWS (IAM, S3, RDS), Cloudflare (Workers, R2, D1).
-*   **Systems & Security:** Distributed Caching, PostgreSQL Spatial Indexing, Zero-Trust Architecture, Full-Stack Observability (Sentry / BetterStack).
+*   **Frameworks:** TanStack Start, React 19, Go.
+*   **Data:** Drizzle ORM, PostgreSQL (Spatial Indexing/GiST), Redis.
+*   **Infrastructure:** AWS (IAM, S3, RDS), Cloudflare (Workers, R2, D1).
+*   **Observability:** Sentry, BetterStack (Uptime & Logging).
 
 ---
 
 ### 📝 The Engineering Stance
-I believe that frameworks are tools, but **Architecture is the product**. My process is lightweight: align on outcomes, prototype quickly, and refine relentlessly. I build tools that respect the user's intelligence and ensure long-term system integrity.
+I believe that frameworks are tools, but **Architecture is the product**. We are currently in an era of "convenience-first" deployment where high-level abstractions (like Vercel) allow for rapid prototyping. While valuable for initial velocity, I believe that true system integrity requires a deep understanding of the entire production process.
 
+My architectural decisions are driven by the specific needs of the product:
+
+
+- Product Requirements: Aligning infrastructure with the core user experience.
+
+- Economic Scaling: Choosing between the global speed of Edge Isolates and the high-trust integrity of Regional Compute based on user demographics and team size.
+
+- Developer Responsibility: Moving beyond "magic" abstractions to take full ownership of the data layer (Drizzle/SQL) and the network lifecycle.
+
+I build tools that respect the user's intelligence and prioritize long-term system sustainability over short-term "convenience" hacks.
 *Detailed records of my technical hurdles and the "Whys" behind these decisions are documented in my monthly **Decision Logs** and **Engineering STAR Archive**.*
 
 ---
