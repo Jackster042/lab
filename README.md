@@ -60,11 +60,11 @@ With the rise of AI-assisted exploit generation, I am researching defensive stra
 - **The Saga Pattern:** Investigating distributed transaction management to maintain consistency in event-driven systems.
 - **Memory-Safety & Go:** Exploring the offloading of performance-critical middleware to **Go (Golang)** to leverage its superior concurrency model for security-critical request validation.
 
-  - **AWS S3 versus Cloudflare R2:**
+- **AWS S3 versus Cloudflare R2:**
  - **AWS RDS (Postgres):** Use for "Heavy State." When data is complex, large, or requires high-integrity relationships. It is the Standard for Enterprise.
  - **Cloudflare D1 (SQLite):** Use for "Light State." When speed and low cost are the priority and the data fits into a simpler model. It is the Future of the Edge.
 
-   **Architecture Rule:** - Separating Metadata from Media.
+- **Architecture Rule:** - Separating Metadata from Media.
  - **Metadata (Database):** Ownership, Timestamps, Titles, File Sizes, File URLs.
  - **Media (Object Storage):** Raw Bytes, Images, Videos.
  - **Why:** Database stays small (easy to scale/backup), Storage stays cheap (no egress fees with R2).
@@ -73,13 +73,13 @@ With the rise of AI-assisted exploit generation, I am researching defensive stra
  - **Function:** Regional Database Accelerator.
  - **Comparison:** Superior to RDS Proxy for Edge-to-Region setups because it combines Connection Pooling with Regional Read-Caching.
  - **Architect's Strategy:** Use this to keep the "Heavy Truth" in AWS RDS while achieving "Instant UX" worldwide.
-   
- - **Edge Serverless vs. Regional Serverless**
+
+- **Edge Serverless vs. Regional Serverless**
  - **Regional (Lambda):** Code stays in one city. Subject to "Cold Starts." Best for heavy processing.
  - **Edge (Cloudflare Workers):** Code is everywhere. Zero Cold Starts. Best for Global UX and Lean APIs.
  - **The Shift:** Moving from Vercel/Netlify to Cloudflare/AWS is the move from a "Managed Lease" to "Infrastructure Ownership."
 
- - **Concept: Statelessness in the Lean Stack:**
+- **Concept: Statelessness in the Lean Stack:**
  - **Definition:** Each request is a "blank slate." No data is saved between clicks on the server itself.
  - **The Strategy:** Use AWS Cognito to provide the "Identity Token" and AWS RDS to provide the "Memory."
  - **Why Edge Wins:** Since the code has to "wake up" for every request, the boot-up time must be zero. This is why we use Cloudflare Workers (Isolates) instead of AWS Lambda (Containers) for the UI logic.
