@@ -7,26 +7,126 @@ This repository serves as my **Systems Research & Development (R&D) center**. It
 
 ### 🏗️ Active Research & Prototyping
 
-#### 1. Real Estate Systems (Project: Heritage-Refactor)
-**Status:** Infrastructure & Data-Flow Research  
-**The Core Challenge:** Orchestrating high-concurrency spatial data (Mapbox GL) while managing a sophisticated **Hybrid Cloud Strategy** between Edge and Regional computing.
+# Project Plan: Edge-First Football Dashboard (Infrastructure-First)
 
-*   **The Compute Layer Pivot:** Migrating from Next.js/Prisma to **TanStack Start/Drizzle**. 
-    *   *Rationale:* By "opening the hood," I am replacing "magic" SQL generation with lean, explicit queries. This transition allows for a deeper understanding of the request lifecycle—from the browser to the Edge PoP (Cloudflare) and finally to the Regional Data Center (AWS).
-*   **Infrastructure Strategy:** Evaluating a **"Vending Machine vs. Warehouse"** architecture.
-    *   *Cloudflare (The Vending Machine):* Utilizing Edge Workers and R2 for low-latency delivery of high-density property imagery and initial request filtering.
-    *   *AWS (The Warehouse):* Utilizing Regional RDS and S3 for "High-Trust" transactions where data integrity and ACID compliance are non-negotiable.
-*   **Database & Security Strategy:** Utilizing **Drizzle ORM** to maintain a lean compute footprint, reducing "Cold Start" latency on Lambda environments while ensuring type-safe SQL execution.
+## 1. Project Overview
+A modern full-stack testbed utilizing **TanStack Start**, **Neon (Postgres)**, and **Cloudflare**. The goal is to demonstrate a high-performance "Edge" architecture using **Cloudflare Hyperdrive** to eliminate database latency bottlenecks and **CodeRabbit/GitHub Actions** for automated quality gates.
 
-#### 2. Canvas Cameo — **Architectural Post-Mortem**
-**Status:** Archived / Systems Study  
-**The Lesson:** An intentional exploration into **Distributed Systems**. The V1 prototype resulted in a **"Distributed Monolith"**—proving that for solo-engineer or mid-scale products, the "Microservices Tax" often outweighs the scaling benefits.
+---
 
-*   **The Pragmatic Pivot:** Archiving the microservice approach in favor of a **Modular Monolith**. I now prioritize **Event-Driven Background Jobs (Inngest)** to decouple high-latency tasks within a single deployment unit, maximizing developer velocity without sacrificing system integrity.
+## 2. Phase 1: The "Plumbing" (CI/CD & Edge Bootstrap)
+**Objective:** Establish a "Green Path" from local code to a live Edge environment.
+
+### Tasks:
+- [ ] **Project Initialization:**
+    - Initialize TanStack Start using the `cloudflare-pages` adapter.
+    - Set up `pnpm` workspace and basic project structure.
+- [ ] **GitHub Actions Setup:**
+    - `ci.yml`: Automated Linting, Type-checking (`tsc`), and Drizzle Schema validation.
+    - `deploy.yml`: Integration with Cloudflare Pages for automated "Preview Deployments" on every Pull Request.
+- [ ] **Code Quality Automation:**
+    - Integrate **CodeRabbit** via GitHub Marketplace.
+    - Configure `.coderabbit.yaml` to prioritize Edge-runtime compatibility reviews.
+- [ ] **Observability Baseline:**
+    - Initialize **Sentry** with the `@sentry/cloudflare` SDK to capture Edge Function errors.
+
+**Deliverables:**
+- A functional CI/CD pipeline.
+- A "Hello World" TanStack Start app live on a `*.pages.dev` domain.
+- Automated PR feedback loop active via CodeRabbit.
+
+---
+
+## 3. Phase 2: The Data Backbone (Neon & Hyperdrive)
+**Objective:** Secure and accelerate the data layer using connection pooling at the edge.
+
+### Tasks:
+- [ ] **Database Provisioning:**
+    - Setup **Neon** project and create `dev` and `prod` branches.
+    - Configure **Drizzle ORM** with `drizzle-kit` for migrations.
+- [ ] **Cloudflare Hyperdrive Configuration:**
+    - Create a Hyperdrive instance via `wrangler hyperdrive create`.
+    - Map the Neon connection string to Hyperdrive.
+    - Update `wrangler.toml` to expose the Hyperdrive binding.
+- [ ] **Schema Definition:**
+    - Define initial Drizzle schemas: `leagues`, `teams`, and `matches`.
+    - Create a "Connectivity Test" server function to verify Hyperdrive latency vs. direct connection.
+
+**Deliverables:**
+- Drizzle schema pushed to Neon.
+- Hyperdrive binding active and accessible within TanStack Start server functions.
+- Latency metrics visible in function logs.
+
+---
+
+## 4. Phase 3: Data Ingestion & Logic
+**Objective:** Populate the infrastructure with real-world European football data.
+
+### Tasks:
+- [ ] **API Integration:**
+    - Securely store Football API keys in Cloudflare Secrets.
+    - Implement a CRON trigger (Cloudflare Workers) or a manual sync script to fetch data from the API (e.g., API-Football).
+- [ ] **Edge Fetching Logic:**
+    - Build TanStack Start `server functions` to query Neon through Hyperdrive.
+    - Implement TanStack Query for client-side caching and state management.
+- [ ] **UI Implementation:**
+    - Basic Dashboard layout using Tailwind CSS.
+    - League/Club switching logic using TanStack Router's search params.
+
+**Deliverables:**
+- Live dashboard fetching data from Neon.
+- Seamless switching between leagues with zero-latency UI updates via TanStack Query.
+
+---
+
+## 5. Phase 4: Hardening & Monitoring
+**Objective:** Ensure the system is production-ready and observable.
+
+### Tasks:
+- [ ] **Edge Testing:**
+    - Implement **Vitest** for unit tests of utility functions.
+    - Setup **Playwright** for E2E testing of the deployed preview URLs.
+- [ ] **Monitoring & Performance:**
+    - Configure **BetterStack** or **Axiom** for structured logging from the edge.
+    - Final audit of Hyperdrive "Cache Hit" rates in the Cloudflare dashboard.
+
+**Deliverables:**
+- Final DevOps report (Latency improvements, Build times, Test coverage).
+- Fully automated, monitored, and accelerated football statistics platform.
+
+---
+
+## 6. Tech Stack Summary
+- **Framework:** TanStack Start (Nitro/Vinxi)
+- **Deployment:** Cloudflare Pages (Edge Functions)
+- **Database:** Neon (Serverless Postgres)
+- **ORM:** Drizzle ORM
+- **Acceleration:** Cloudflare Hyperdrive
+- **CI/CD:** GitHub Actions + CodeRabbit
+- **Testing:** Vitest + Playwright
 
 #### 3. [Project: Genesis] — **Conceptual Staging**
 **Status:** Early Research / Security Audit  
 **The Goal:** Building a production-grade SaaS product with a **"Shift-Left" Security** mindset.
+
+####  Real Estate Systems (Project: Heritage-Refactor)
+**Status:** Archived / Foundation Research   
+**Outcome:** Validated the Hybrid Cloud Strategy (Edge + Regional).
+
+This project was the crucible for understanding:
+- **Compute:** Next.js/Prisma → TanStack Start/Drizzle (opening the hood)
+- **Infrastructure:** Cloudflare Edge (speed) vs. AWS Regional (integrity)
+- **Data:** Spatial queries (Mapbox) + ACID compliance requirements
+
+**Key Learning:** The "Vending Machine vs. Warehouse" mental model works. Edge for distribution, Regional for truth.
+
+**Current Status:** Insights extracted and applied to active projects (Transparency Dashboard, Football Dashboard). Not actively developed.
+
+####  Canvas Cameo — **Architectural Post-Mortem**
+**Status:** Archived / Systems Study  
+**The Lesson:** An intentional exploration into **Distributed Systems**. The V1 prototype resulted in a **"Distributed Monolith"**—proving that for solo-engineer or mid-scale products, the "Microservices Tax" often outweighs the scaling benefits.
+
+*   **The Pragmatic Pivot:** Archiving the microservice approach in favor of a **Modular Monolith**. I now prioritize **Event-Driven Background Jobs (Inngest)** to decouple high-latency tasks within a single deployment unit, maximizing developer velocity without sacrificing system integrity.
 
 ---
 
@@ -39,7 +139,6 @@ This repository serves as my **Systems Research & Development (R&D) center**. It
 
 #### **Systems Architecture Research**
 - **The Saga Pattern:** Investigating distributed transaction management to maintain consistency in event-driven systems.
-- **Spatial Indexing & GiST:** Deep-dive into PostgreSQL indexing for geographic data—specifically for Mapbox viewport-filtering optimization in the Heritage-Refactor.
 - **Memory-Safety & Go:** Exploring the offloading of performance-critical middleware to **Go (Golang)** to leverage its superior concurrency model for security-critical request validation.
 
 ---
