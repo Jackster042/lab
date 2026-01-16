@@ -24,3 +24,8 @@ Attempted to delegate the entire environment setup (Secrets, Branching, Boilerpl
 
 - AI is a **multiplier of competence**, not a replacement for fundamental knowledge.
 - Infrastructure-as-Code (IaC) is the only way to eventually make agents "aware" of the cloud state.
+
+## 📝 Insight: ( Jan 15)
+
+- Orchestration is the primary bottleneck. AI agents are most effective when given a "Domain-First" constraint.
+- Moving from "coding" to "directing" by providing canonical backend strategies and polling logic before scaffolding.
