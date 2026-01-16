@@ -126,7 +126,7 @@ A modern full-stack testbed utilizing **TanStack Start**, **Neon (Postgres)**, a
 
 _Standardized architectural templates for rapid, high-integrity deployment._
 
-#### [Production API Blueprint (v1.0)](./blueprints/production_api_blueprint.md)
+#### [Production API Blueprint (v1.0)](./blueprints/production-api-blueprint.md)
 
 **Core Stack:** Bun | Express 5 | Drizzle | Neon | Arcjet
 
