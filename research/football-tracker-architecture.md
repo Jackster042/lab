@@ -6,4 +6,4 @@
 - **Infrastructure:** Cloudflare Workers + KV (Polling & Caching).
 - **Core Strategy:** API calls scale with leagues/matches, not with users.
 - **Internal Domain:** Custom mapping for `MatchStatus` and `MatchEvent` to ensure provider-agnostic logic.
-- **[Read the Full Design Doc](./research/football-tracker-architecture.md)**
+- **[Read the Full Design Doc](./research/football_tracker_architecture.md)**
