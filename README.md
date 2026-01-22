@@ -319,4 +319,12 @@ My architectural decisions are driven by the specific needs of the product:
 
 ---
 
+### 📝 Markdown Utility ( Internal Tool )
+
+- **Status:**: Operational / Deployed on Cloudflare
+
+- **Purpose**: Converts raw text, HTML, or files into clean, structured Markdown for the Laboratory's documentation workflow.
+
+- **Stack**: React + Tanstack Query + Router , Cloudflare Pages
+
 _“Integrity starts in the research phase.”_
