@@ -8,6 +8,16 @@ This repository serves as my **Systems Research & Development (R&D) center**. It
 
 ### 🏗️ Active Research & Prototyping
 
+#### 🧠 [Privacy-First Content Discovery (DP-FL)](./research/privacy-first-federated-learning.md)
+
+**Status:** Design Phase / Phase 1 Implementation  
+**Focus:** Implementing Differentially Private Federated Learning (DP-FL). On-device content analysis via TensorFlow.js; secure aggregation of model updates via Convex to protect user "Heavy Truth."
+
+#### ⚽ [Football Match Tracker](./research/football-tracker-architecture.md)
+
+**Status:** Phase A: Chrome Extension MVP (OpenLigaDB) / Phase B: Mobile Prototype (Expo)  
+**Focus:** Orchestrating a "Canonical Backend" on Cloudflare. Scaling API calls with leagues/matches instead of users. Utilizing a Monorepo structure with `@football-tracker/shared` for zero-drift data contracts.
+
 # Project Plan: Edge-First Football Dashboard (Infrastructure-First)
 
 ## 1. Project Overview
@@ -268,6 +278,25 @@ _Current benchmarks and infrastructure decision-matrices._
 - **Statelessness:** Adopting a "Blank Slate" request model. Utilizing **AWS Cognito** for Identity and **AWS RDS** for Memory, allowing the Edge compute layer to remain ephemeral and high-performance.
 
 ---
+
+### 🏛️ Engineering Governance (AI-CTO)
+
+_Systematizing leadership, strategy, and technical decision-making._
+
+#### [AI-CTO Operating System](./governance/)
+
+**Status:** Operational  
+A structured framework for managing high-velocity engineering teams. Codifying the "Director" role through:
+
+- **ADR Framework:** Structured Architecture Decision Records to prevent "magic" drift.
+- **DORA Metrics:** Tracking deployment frequency and change failure rates within the Lab.
+- **Strategic Roadmapping:** Balancing quarterly OKRs with "Project Genesis" R&D.
+
+### 🛠️ Internal Toolbox
+
+_Proprietary utilities designed to lower the activation energy of research._
+
+- **[Markdown Utility](./apps/md-utility/):** A Bun-powered tool deployed on Cloudflare Pages that converts raw text/HTML into structured documentation for the Laboratory.
 
 ### 🛠️ Current Research Domain
 
