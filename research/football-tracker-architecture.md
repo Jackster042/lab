@@ -1,9 +1,15 @@
-### ⚽ Football Match Tracker (Extension → Mobile)
+---
+Status: Architecture Sketch (Partially Implemented)
+Last Updated: [Date]
+Code Status: Basic WebSocket prototype only (Node.js + Express)
+---
 
-**Status:** Architecture Phase / Design Validated  
-**The Goal:** A cross-platform live score tracker utilizing a "Canonical Backend" strategy on Cloudflare Edge.
+# Football Tracker: From Concept to Current Implementation
 
-- **Infrastructure:** Cloudflare Workers + KV (Polling & Caching).
-- **Core Strategy:** API calls scale with leagues/matches, not with users.
-- **Internal Domain:** Custom mapping for `MatchStatus` and `MatchEvent` to ensure provider-agnostic logic.
-- **[Read the Full Design Doc](./research/football_tracker_architecture.md)**
+**Current Reality:** 
+- Working: Single-node WebSocket server (`ws` library)
+- Not working: Redis Pub/Sub, Cloudflare Workers, Hyperdrive (planned for v2)
+
+**Note:** This doc tracks the gap between "what I planned" and "what I actually built."
+See `/server` for the working (but limited) implementation.
+
