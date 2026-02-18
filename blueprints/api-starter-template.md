@@ -5,7 +5,7 @@ architecture: Modular Monolith / Layered (Controller-Service-Model)
 runtime_target: Edge-ready Containers
 ---
 
-# Project Documentation - dev_ops_compare
+# Personal boilerplate - not a framework
 
 > **Purpose**: This document serves as a comprehensive reference guide for setting up and understanding the dev_ops_compare project architecture, patterns, and best practices. It is designed to be used as a template for future agentic coding projects.
 
