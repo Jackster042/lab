@@ -1,6 +1,13 @@
-# Content Suggestion App - Privacy-Preserving Architecture
+---
+Status: Literature Review / Concept Sketch
+Last Updated: [Date]
+Code Status: Not implemented
+---
 
-## Federated Learning Research Summary
+# Exploring Federated Learning Concepts
+
+**Note:** Research notes on differential privacy and on-device ML. 
+No working implementation exists; exploring TensorFlow.js concepts only.
 
 Based on research, the best approach for privacy-preserving AI recommendations is **Differentially Private Federated Learning (DP-FL)**, successfully implemented by:
 
