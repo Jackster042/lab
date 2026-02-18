@@ -1,6 +1,12 @@
-# Research: Agentic Coding Workflows
+---
+Status: Concept Sketch / Reading Notes
+Last Updated: [Date]
+Code Status: Not implemented
+---
 
-**Status:** Active | **Last Updated:** Jan 02, 2026
+# Exploring Agentic AI Patterns
+
+Research on AI agent orchestration patterns. No implementation code yet.
 
 ## 🎯 Objective
 
