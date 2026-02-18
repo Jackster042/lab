@@ -1,4 +1,13 @@
-# Research Report: Suitability of soccerdata for Live Scores
+---
+Status: Concept / Abandoned
+Last Updated: [Date]
+Code Status: Not started / Abandoned in favor of TypeScript implementation
+---
+
+# Soccer Data Library (Python) - Abandoned
+
+**Decision:** Switched to TypeScript/Node.js stack for consistency with other projects.
+Keeping notes here for reference only.
 
 ## Overview
 
