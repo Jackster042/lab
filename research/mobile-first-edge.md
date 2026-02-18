@@ -1,6 +1,12 @@
-# Research: Mobile-First Edge Architecture
+---
+Status: Architecture Concept
+Last Updated: [Date]
+Code Status: Not implemented (React Native learning planned)
+---
 
-**Status:** Outline | **Last Updated:** Jan 02, 2026
+# Mobile Edge Computing Concepts
+
+Exploring React Native + Edge functions. No prototype built yet.
 
 ## 🎯 Objective
 
